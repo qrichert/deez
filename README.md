@@ -40,8 +40,8 @@ No special heuristics are planned outside of templates (find a less
 intimidating name for that) and variables/secrets.
 
 `deez` requires a `.deez` file in the config root (or it will ask for
-confirmation), to prevent yourself from ruining the `$HOME` directory
-if ran on the wrong root.
+confirmation), to prevent yourself from ruining the `$HOME` directory if
+ran on the wrong root.
 
 Maybe add `deez diff`, that diffs the two versions (using the `diff`
 executable, or settable through an env variable), nothing fancy or
