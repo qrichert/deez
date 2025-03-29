@@ -11,7 +11,7 @@ _Manage deez config files._
 > Work In Progress.
 
 Same idea as `GNU Stow` or `chezmoi`, but way simpler, requiring less
-neuron activation to use.
+neuron activation to operate.
 
 ## Roadmap
 
@@ -22,25 +22,30 @@ neuron activation to use.
 - [x] Use Git remote as `sync` root.
 - [ ] Basic `link`.
 - [ ] Basic `rsync`.
+- [ ] Likely `list` (with up-to-date status for each file).
+- [ ] Maybe `diff` (difference between source and target).
+- [ ] Proper verbose `--help` section.
 - [ ] Think about templating.
 
 ## Usage
 
-The `root` (current working directory unless specified), will be mapped
-to `$HOME`. `deez` will copy any file it finds under the root to a
-matching file in `$HOME`.
+`deez` will copy any file it finds under the `root` to a matching file
+in `$HOME`.
 
 - In `sync` mode, the files are copied and the target files overridden.
+- `rsync` is the reverse of `sync`, copying from `$HOME` to `root`.
 - In `link` mode, symlinks are created to the files in the root.
 
 No special heuristics are planned outside of templates (find a less
 intimidating name for that) and variables/secrets.
 
+`deez` requires a `.deez` file in the config root (or it will ask for
+confirmation), to prevent yourself from ruining the `$HOME` directory
+if ran on the wrong root.
+
 Maybe add `deez diff`, that diffs the two versions (using the `diff`
 executable, or settable through an env variable), nothing fancy or
 homemade. Maybe there's a crate for this?
-
-Maybe also allow specifying a git remote as `<root>`
 
 ```console
 $ tree
@@ -80,7 +85,7 @@ Will treat `somedir` as the root instead of using `cwd`.
 - Respects `.gitignore` (thanks to the `ignore` crate) (TODO: test
   this).
 
-### Templating
+### Templating (idea/TODO)
 
 Sometimes you don't want to replace the whole config file, just a part
 of it. For example, in `config.fish` you may have generic `fish` config,
